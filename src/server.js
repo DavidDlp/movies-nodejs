@@ -28,9 +28,9 @@ app.use('*', (req,res) =>{
 // Error center
 app.use((error, req, res, next)=>{
     return res.status(error.status || 500).json(error.message || 'Unexpected error')
-})
+});
 
 // Start the server
 app.listen(PORT, ()=>{
     console.log('Server running on localhost:' + PORT)
-})
+});

@@ -5,6 +5,7 @@ const {
     getCinemaById,
     postCinema,
     putCinema,
+    patchNewMovieCinema,
     deleteCinema
 } = require('../controller/cinema.controller')
 
@@ -16,6 +17,8 @@ cinemaRoutes.get('/:id', getCinemaById);
 cinemaRoutes.post('/', postCinema);
 // PUT------
 cinemaRoutes.put('/:id', putCinema);
+// PATCH------
+cinemaRoutes.patch('/newmovie/:id',patchNewMovieCinema);
 // DELETE------
 cinemaRoutes.delete('/:id', deleteCinema);
 

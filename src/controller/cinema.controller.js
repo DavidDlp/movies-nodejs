@@ -3,7 +3,7 @@ const Cinema = require ('../models/cinema.models');
 // GET------
 const getCinema = async (req,res,next)=>{
     try{
-            const cinema = await Cinema.find()
+            const cinema = await Cinema.find().populate('movies')
             return res.status(200).json(cinema)
     }catch(error){
         return next(error)
@@ -43,7 +43,18 @@ const putCinema = async (req,res,next)=>{
     }catch(error){
         return next(error)
     }
-}
+};
+// PATH------
+const patchNewMovieCinema = async (req,res,next)=>{
+    try{
+        const {id} = req.params
+        const idMovie = req.body.idMovie
+        const updateCinemaWithMovie = await Cinema.findByIdAndUpdate(id,{$push:{movies:idMovie}})
+        return res.status(200).json(updateCinemaWithMovie)
+    }catch(error){
+        return next(error)
+    }
+};
 // DELETE------
 const deleteCinema = async (req,res,next) =>{
     try{
@@ -53,7 +64,7 @@ const deleteCinema = async (req,res,next) =>{
     }catch(error){
        return next(error) 
     }
-}
+};
 
 
 module.exports = {
@@ -61,5 +72,6 @@ module.exports = {
     getCinemaById,
     postCinema,
     putCinema,
+    patchNewMovieCinema,
     deleteCinema
 }
