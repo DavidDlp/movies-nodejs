@@ -1,5 +1,6 @@
 const express = require('express');
 const movieRoutes = express.Router();
+const {isAuth}= require('../middlewares/secured.middleware')
 const{
     getAllMovies, 
     getMovieById, 
@@ -12,7 +13,7 @@ const{
 } = require('../controller/movie.controller')
 
 // GET------
-movieRoutes.get('/', getAllMovies)
+movieRoutes.get('/',[isAuth], getAllMovies)
 // 2. Crear un endpoint **get** que devuelva una película según su **_id**
 movieRoutes.get('/:id', getMovieById)
 // 3. Crear un endpoint **get** que devuelva un valor por su titulo.
