@@ -27,7 +27,7 @@ const loginUser = async (req,res,next) =>{
         // console.log('usuario encontrado', userInBd)
         if(!userInBd){
             const error = new Error
-            Errorerror.status = 404
+            error.status = 404
             error.message = 'No existe usuario'
             return next(error)
         }
